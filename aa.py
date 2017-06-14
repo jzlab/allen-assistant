@@ -33,7 +33,6 @@ def extract_ophys_params(FLAGS):
     params['stimuli'] = [ getattr(stim_info,s.upper()) for s in params['stimuli']]
     return params
 
-
 def fetch_ecs(boc,FLAGS):
     params = extract_ec_params(FLAGS)
     ecs = boc.get_experiment_containers(**params)
@@ -52,11 +51,9 @@ def fetch_datasets(boc,FLAGS):
     cells = pd.DataFrame.from_records(cells)
     exps = fetch_exps(boc,FLAGS)
     ecs_ids = [ exp['experiment_container_id'] for exp in exps]
-    ids = [ exp['id'] for exp in exps]
-    query_cells = cells[cells['experiment_container_id'].isin(ecs_ids)]
-    for cell_id in query_cells.cell_specimen_id:
-
-        import pdb; pdb.set_trace()
+    exp_ids = [ exp['id'] for exp in exps]
+    for id in exp_ids:
+        data_set = boc.get_ophys_experiment_data(id)
 
 if __name__ == "__main__":
     FLAGS = parse_args()
