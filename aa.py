@@ -4,6 +4,8 @@ import allensdk.brain_observatory.stimulus_info as stim_info
 from pprint import pprint as pp
 import pandas as pd
 from tqdm import tqdm
+import scipy.io as sio
+import os
 
 def add_base_parser(parser):
     tboc = boc = BrainObservatoryCache(manifest_file='boc/manifest.json')
@@ -41,6 +43,9 @@ def parse_args():
 
     subparsers = parser.add_subparsers()
     dl_parser = subparsers.add_parser('download',help='Used for downloading files')
+    dl_parser.add_argument('--output_dir',
+        help='path/to/directory to save files (currently only supports mat files)', type=str,metavar='',
+        default='boc/experiment_output_files')
 
     dl_parser = add_base_parser(dl_parser)
 
@@ -121,10 +126,20 @@ def fetch_datasets(FLAGS,boc,exps):
         traces.extend([dff_traces])
     return time, traces,datasets
 
+def write_mat_files(savepath,ts,traces,datasets):
+
+    for t,trace,dataset in zip(ts,traces,datasets):
+        exp_id = dataset.get_metadata()['ophys_experiment_id']
+        exp_fp = savepath + str(exp_id) + '.mat'
+        print('writing dF/F trace to '+exp_fp)
+        sio.savemat(exp_fp, {'time':t, 'dff':trace})
+
+
 if __name__ == "__main__":
     FLAGS = parse_args()
     manifest_path = FLAGS.cache_dir + 'manifest.json'
     boc = BrainObservatoryCache(manifest_file=manifest_path)
+
     exps = fetch_exps(FLAGS,boc)
 
     if 'outfile' in vars(FLAGS).keys():
@@ -152,9 +167,9 @@ if __name__ == "__main__":
                 pp(fetch_exps(FLAGS,boc,filters={'experiment_container_ids':[ec['id']]}))
 
     else:
-
-        import pdb; pdb.set_trace()
         t,df,datasets = fetch_datasets(FLAGS,boc,exps)
-
-    # print('')
-    # print('Experiments for experiment_container_id %d: %d\n' % (1,1))
+        if 'output_dir' in vars(FLAGS).keys():
+            savepath = FLAGS.output_dir+'/'
+            if not os.path.exists(savepath):
+                os.makedirs(savepath)
+            write_mat_files(savepath,t,df,datasets)
