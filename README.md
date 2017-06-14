@@ -101,7 +101,6 @@ Works on linux but I have also gotten it to work on macos
 ```
 $ git clone https://github.com/jzlab/allen-assistant
 
-$ cd allen-assistant
 
 ```
 
@@ -110,12 +109,28 @@ $ cd allen-assistant
 This project was built on Python 2.7.10, the allensdk requires 2.7x and is not python3 compatible
 You can use pip to install all dependencies
 
+I recommend using a virtual environment so as not to keep everything cleen.
+
+If you don't have virtualenv installed already
+
 ```
+$ pip install virtualenv
+```
+
+then create and/or load the virtual environment
+
+```
+$ cd allen-assistant
+
+$ virtualenv allen
+
+$ source allen/bin/activate
+
 $ pip install -r requirements.txt
 
 ```
 
-If everything installs without a hitch it should run
+If everything installs without a hitch it should run!
 
 ```
 $ python aa.py --help
