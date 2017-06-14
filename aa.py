@@ -37,6 +37,9 @@ def add_base_parser(parser):
     return parser
 
 def parse_args():
+
+    trace_types=['raw','demixed','neuropil','corrected','dff']
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-r", '--cache_dir',
             help='Default: ./boc/', type=str, default='boc/', metavar='')
@@ -46,6 +49,10 @@ def parse_args():
     dl_parser.add_argument('--output_dir',
         help='path/to/directory to save files (currently only supports mat files)', type=str,metavar='',
         default='boc/experiment_output_files')
+    dl_parser.add_argument('--trace_format',
+        help='Fluoresence trace type (default dff). Valid options are '+', '.join(trace_types),
+        type=str, metavar='',
+        choices=trace_types, default='dff')
 
     dl_parser = add_base_parser(dl_parser)
 
@@ -120,18 +127,27 @@ def fetch_datasets(FLAGS,boc,exps):
         dl_warn('Experiment %d' % exp_id)
         data_set = boc.get_ophys_experiment_data(exp_id)
         cids = data_set.get_cell_specimen_ids()
-        time,dff_traces = data_set.get_dff_traces(cell_specimen_ids=cids)
+        if FLAGS.trace_format == 'dff':
+            time,n_traces = data_set.get_dff_traces(cell_specimen_ids=cids)
+        elif FLAGS.trace_format == 'raw':
+            time,n_traces = data_set.get_fluorescence_traces(cell_specimen_ids=cids)
+        elif FLAGS.trace_format == 'demixed':
+            time,n_traces = data_set.get_demixed_traces(cell_specimen_ids=cids)
+        elif FLAGS.trace_format == 'neuropil':
+            time,n_traces = data_set.get_neuropil_traces(cell_specimen_ids=cids)
+        elif FLAGS.trace_format == 'corrected':
+            time,n_traces = data_set.get_corrected_traces(cell_specimen_ids=cids)
         datasets.extend([data_set])
         ts.extend([time])
-        traces.extend([dff_traces])
+        traces.extend([n_traces])
     return time, traces,datasets
 
-def write_mat_files(savepath,ts,traces,datasets):
+def write_mat_files(FLAGS,savepath,ts,traces,datasets):
 
     for t,trace,dataset in zip(ts,traces,datasets):
         exp_id = dataset.get_metadata()['ophys_experiment_id']
         exp_fp = savepath + str(exp_id) + '.mat'
-        print('writing dF/F trace to '+exp_fp)
+        print('writing '+FLAGS.trace_format+' trace to '+exp_fp)
         sio.savemat(exp_fp, {'time':t, 'dff':trace})
 
 
@@ -172,4 +188,4 @@ if __name__ == "__main__":
             savepath = FLAGS.output_dir+'/'
             if not os.path.exists(savepath):
                 os.makedirs(savepath)
-            write_mat_files(savepath,t,df,datasets)
+            write_mat_files(FLAGS,savepath,t,df,datasets)
