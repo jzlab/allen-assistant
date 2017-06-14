@@ -2,8 +2,8 @@ import argparse
 from allensdk.core.brain_observatory_cache import BrainObservatoryCache
 import allensdk.brain_observatory.stimulus_info as stim_info
 from pprint import pprint as pp
-import scipy.io as sio
 import pandas as pd
+from tqdm import tqdm
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -17,6 +17,12 @@ def parse_args():
     ophys.add_argument("-s","--stimuli", help="stimuli type (e.g. natural_scenes)", type=str, action='append')
 
     return parser.parse_args()
+
+def dl_warn(msg='data'):
+    print('Downloading '+msg+' from the Brain Observatory')
+    print('This may take a while...')
+    print('')
+
 
 def extract(param_list,all_params):
     extracted_params = {}
@@ -34,11 +40,13 @@ def extract_ophys_params(FLAGS):
     return params
 
 def fetch_ecs(boc,FLAGS):
+    dl_warn('experiment_containers')
     params = extract_ec_params(FLAGS)
     ecs = boc.get_experiment_containers(**params)
     return ecs
 
 def fetch_exps(boc,FLAGS):
+    dl_warn('experiment manifests')
     ecs = fetch_ecs(boc,FLAGS)
     ec_ids = [ec['id'] for ec in ecs]
     ophys_params = extract_ophys_params(FLAGS)
@@ -47,13 +55,20 @@ def fetch_exps(boc,FLAGS):
     return exps
 
 def fetch_datasets(boc,FLAGS):
-    cells = boc.get_cell_specimens()
-    cells = pd.DataFrame.from_records(cells)
+    dl_warn('experiment data files')
     exps = fetch_exps(boc,FLAGS)
     ecs_ids = [ exp['experiment_container_id'] for exp in exps]
     exp_ids = [ exp['id'] for exp in exps]
-    for id in exp_ids:
+    for id in tqdm(exp_ids,desc='fetch experiments',unit_scale='exp'):
+        import pdb; pdb.set_trace()
         data_set = boc.get_ophys_experiment_data(id)
+
+    cells = boc.get_cell_specimens()
+    cells = pd.DataFrame.from_records(cells)
+    query_cells = cells[cells['experiment_container_id'].isin(ecs_ids)]
+
+    #for cell in query_cells:
+
 
 if __name__ == "__main__":
     FLAGS = parse_args()
@@ -66,6 +81,6 @@ if __name__ == "__main__":
     ecs = fetch_ecs(boc,FLAGS)
 
     print('Num experiment containers: %d\n' % len(ecs))
-    exps = fetch_exps(boc,FLAGS)
+    #exps = fetch_exps(boc,FLAGS)
     print('')
     print('Experiments for experiment_container_id %d: %d\n' % (1,1))
