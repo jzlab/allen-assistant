@@ -34,7 +34,7 @@ Number of Experiments returned: 8
 When you are happy with the query use the same args to download
 
 ```
-$ ./aa.py download -t VISp \
+$ python aa.py download -t VISp \
 -c Cux2-CreERT2 \
 -d 175 \
 -d 250 \
@@ -48,7 +48,7 @@ The utility is split (possibly unnecessarily) into 2 subcommands which allow you
 before committing to long wait till they finish downloading
 
 ```
-$ ./aa.py --help
+$ python aa.py --help
 
 usage: aa.py [-h] [-r] {download,search} ...
 positional arguments:
@@ -62,7 +62,7 @@ The Experiment Container and Other Experiment Params consistent across download/
 
 ```
 
-$ ./aa.py search --help
+$ python aa.py search --help
 usage: aa.py search [-h] [-o] [--detailed] [-t] [-c] [-d] [-s]
 
 optional arguments:
@@ -167,4 +167,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-Original [Jupyter notebook] provided by the Allen Institute for examples
+Original [Jupyter notebook](http://alleninstitute.github.io/AllenSDK/_static/examples/nb/brain_observatory.html) provided by the Allen Institute for examples
