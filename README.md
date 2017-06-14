@@ -4,6 +4,8 @@ python command line utility that encapsulates the Allen Brain Observatory allens
 
 ## Example Usage
 
+Test out set of criteria to see what you get
+
 ```bash
 
 $ python aa.py search -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings
@@ -28,6 +30,9 @@ Number of Experiment Containers (or individual mice?): 11
 Number of Experiments returned: 8
 
 ```
+
+When you are happy with the query use the same args to download
+
 ```
 $ ./aa.py download -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings
 
@@ -94,11 +99,9 @@ Works on linux but I have also gotten it to work on macos
 
 
 ```bash
-
 $ git clone https://github.com/jzlab/allen-assistant
 
 $ cd allen-assistant
-
 
 ```
 
@@ -133,28 +136,18 @@ optional arguments:
 ## Built With
 
 * [AllenSDK](http://alleninstitute.github.io/AllenSDK/) - The Allen SDK
-*
-* ## Contributing
-*
-* Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-*
-* ## Versioning
-*
-* We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-*
-* ## Authors
-*
-* * **Elijah Christensen** - *Initial work* - [Github](https://github.com/elijahc)
-*
-* See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-*
-* ## License
-*
-* This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-*
-* ## Acknowledgments
-*
-* * Hat tip to anyone who's code was used
-* * Inspiration
-* * etc
-*
+
+## Authors
+
+* **Elijah Christensen** - [Github](https://github.com/elijahc)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
+
