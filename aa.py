@@ -143,12 +143,13 @@ if __name__ == "__main__":
         if FLAGS.detailed:
             print('')
             for ec in ecs:
-                print('Experiment Container ID '+str(ec['id'])+':\n')
-                print('===============================\n')
+                print('====================================\n')
+                print('Experiment Container (ID:'+str(ec['id'])+') metadata:\n')
                 pp(ec)
+                # print('====================================\n')
                 print('')
+                print('Experiments:\n')
                 pp(fetch_exps(FLAGS,boc,filters={'experiment_container_ids':[ec['id']]}))
-                print('===============================\n')
 
     else:
 
