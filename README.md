@@ -1,10 +1,43 @@
 # allen-assistant
 
-python command line utility for querying, downloading, and exporting allen brain observatory data
+python command line utility that encapsulates the Allen Brain Observatory allensdk for streamlining querying, downloading, and exporting allen brain observatory data.
 
-## Usage
+## Example Usage
+
+```bash
+
+$ python aa.py search -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings
+
+RESULTS
+
+Query parameters:
+===============================
+
+{'cache_dir': 'boc/',
+'cre_lines': ['Cux2-CreERT2'],
+'detailed': False,
+'imaging_depths': [175, 250],
+'outfile': None,
+'stimuli': ['static_gratings'],
+'targeted_structures': ['VISp']}
+===============================
+
+
+Number of Experiment Containers (or individual mice?): 11
+
+Number of Experiments returned: 8
 
 ```
+```
+$ ./aa.py download -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings
+
+```
+
+## Overview
+The utility is split (possibly unnecessarily) into 2 subcommands which allow you to test your queries
+before committing to long wait till they finish downloading
+
+```bash
 $ ./aa.py --help
 
 usage: aa.py [-h] [-r] {download,search} ...
@@ -15,7 +48,9 @@ search           Used for testing search queries
 
 ```
 
-```
+The Experiment Container and Other Experiment Params consistent across download/search, but search is shown below as an example
+
+```bash
 
 $ ./aa.py search --help
 usage: aa.py search [-h] [-o] [--detailed] [-t] [-c] [-d] [-s]
@@ -53,23 +88,16 @@ Other Experiment Params:
 
 ### Installing
 
+Works on linux but I have also gotten it to work on macos
+
 #### Linux
 
-```
+
+```bash
+
 $ git clone https://github.com/jzlab/allen-assistant
+
 $ cd allen-assistant
-$ python aa.py --help
-
-usage: aa.py [-h] [-r] {download,search} ...
-
-positional arguments:
-    {download,search}
-    download         Used for downloading files
-    search           Used for testing search queries
-
-    optional arguments:
-    -h, --help         show this help message and exit
-    -r , --cache_dir   Default: ./boc/
 
 
 ```
@@ -77,13 +105,30 @@ positional arguments:
 ### Prerequisites
 
 This project was built on Python 2.7.10, the allensdk requires 2.7x and is not python3 compatible
+You can use pip to install all dependencies
 
-```
+```bash
 $ pip install -r requirements.txt
 
 ```
 
 If everything installs without a hitch it should run
+
+```bash
+$ python aa.py --help
+
+
+usage: aa.py [-h] [-r] {download,search} ...
+
+positional arguments:
+{download,search}
+    download         Used for downloading files
+    search           Used for testing search queries
+
+optional arguments:
+    -h, --help         show this help message and exit
+    -r , --cache_dir   Default: ./boc/
+```
 
 ## Built With
 
