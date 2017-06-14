@@ -49,48 +49,41 @@ Other Experiment Params:
                             natural_movie_two, natural_scenes, spontaneous,
                             static_gratings
 
-    ```
+```
 
 ### Installing
 
 #### Linux
 
-    ```
-    $ git clone https://github.com/jzlab/allen-assistant
-    $ cd allen-assistant
-    $ python aa.py --help
+```
+$ git clone https://github.com/jzlab/allen-assistant
+$ cd allen-assistant
+$ python aa.py --help
 
-    usage: aa.py [-h] [-r] {download,search} ...
+usage: aa.py [-h] [-r] {download,search} ...
 
-    positional arguments:
-        {download,search}
-        download         Used for downloading files
-        search           Used for testing search queries
+positional arguments:
+    {download,search}
+    download         Used for downloading files
+    search           Used for testing search queries
 
-        optional arguments:
-        -h, --help         show this help message and exit
-        -r , --cache_dir   Default: ./boc/
+    optional arguments:
+    -h, --help         show this help message and exit
+    -r , --cache_dir   Default: ./boc/
 
-
-    ```
-
-And repeat
 
 ```
-until finished
-```
-
 
 ### Prerequisites
 
-    This project was built on Python 2.7.10, the allensdk requires 2.7x and is not python3 compatible
+This project was built on Python 2.7.10, the allensdk requires 2.7x and is not python3 compatible
 
-    ```
-    $ pip install -r requirements.txt
+```
+$ pip install -r requirements.txt
 
-    ```
+```
 
-    If everything installs without a hitch it should run
+If everything installs without a hitch it should run
 
 ## Built With
 
