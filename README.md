@@ -109,7 +109,7 @@ $ git clone https://github.com/jzlab/allen-assistant
 This project was built on Python 2.7.10, the allensdk requires 2.7x and is not python3 compatible
 You can use pip to install all dependencies
 
-I recommend using a virtual environment so as not to keep everything cleen.
+I recommend using a virtual environment so as to keep everything cleen.
 
 If you don't have virtualenv installed already
 
