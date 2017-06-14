@@ -6,7 +6,7 @@ python command line utility that encapsulates the Allen Brain Observatory allens
 
 Test out set of criteria to see what you get
 
-```bash
+```
 
 $ python aa.py search -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings
 
@@ -25,7 +25,7 @@ Query parameters:
 ===============================
 
 
-Number of Experiment Containers (or individual mice?): 11
+Number of Experiment Containers: 11
 
 Number of Experiments returned: 8
 
@@ -42,7 +42,7 @@ $ ./aa.py download -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings
 The utility is split (possibly unnecessarily) into 2 subcommands which allow you to test your queries
 before committing to long wait till they finish downloading
 
-```bash
+```
 $ ./aa.py --help
 
 usage: aa.py [-h] [-r] {download,search} ...
@@ -55,7 +55,7 @@ search           Used for testing search queries
 
 The Experiment Container and Other Experiment Params consistent across download/search, but search is shown below as an example
 
-```bash
+```
 
 $ ./aa.py search --help
 usage: aa.py search [-h] [-o] [--detailed] [-t] [-c] [-d] [-s]
@@ -98,7 +98,7 @@ Works on linux but I have also gotten it to work on macos
 #### Linux
 
 
-```bash
+```
 $ git clone https://github.com/jzlab/allen-assistant
 
 $ cd allen-assistant
@@ -110,14 +110,14 @@ $ cd allen-assistant
 This project was built on Python 2.7.10, the allensdk requires 2.7x and is not python3 compatible
 You can use pip to install all dependencies
 
-```bash
+```
 $ pip install -r requirements.txt
 
 ```
 
 If everything installs without a hitch it should run
 
-```bash
+```
 $ python aa.py --help
 
 
@@ -147,7 +147,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
-
+Original [Jupyter notebook] provided by the Allen Institute for examples

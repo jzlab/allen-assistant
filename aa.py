@@ -136,7 +136,7 @@ if __name__ == "__main__":
         pp(vars(FLAGS))
         print('===============================\n')
         print('')
-        print('Number of Experiment Containers (or individual mice?): %d\n' % len(ecs))
+        print('Number of Experiment Containers: %d\n' % len(ecs))
 
         print('Number of Experiments returned: %d\n' % len(exps))
 
