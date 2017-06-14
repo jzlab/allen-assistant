@@ -34,7 +34,12 @@ Number of Experiments returned: 8
 When you are happy with the query use the same args to download
 
 ```
-$ ./aa.py download -t VISp -c Cux2-CreERT2 -d 175 -d 250 -s static_gratings --output_dir boc/ophys_matfiles/
+$ ./aa.py download -t VISp \
+-c Cux2-CreERT2 \
+-d 175 \
+-d 250 \
+-s static_gratings \
+--output_dir boc/ophys_matfiles/
 
 ```
 
