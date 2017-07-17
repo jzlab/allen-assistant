@@ -28,7 +28,7 @@ def add_base_parser(parser):
             help="Imaging depths. Allowed values are "+", ".join(str(x) for x in depths),
             type=int, action='append', choices=depths ,metavar='')
 
-    ophys = parser.add_argument_group('Other Experiment Params','')
+    ophys = parser.add_argument_group('Other Params','')
 
     ophys.add_argument("-s","--stimuli",
             help="Visual stimuli type.  Allowed values are "+", ".join(stimuli),
