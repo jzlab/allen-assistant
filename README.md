@@ -2,6 +2,8 @@
 
 python command line utility that encapsulates the Allen Brain Observatory allensdk for streamlining querying, downloading, and exporting allen brain observatory data.
 
+![Allen dataset organization](http://alleninstitute.github.io/AllenSDK/_images/container_session_layout.png)
+
 ## Example Usage
 
 Test out set of criteria to see what you get
