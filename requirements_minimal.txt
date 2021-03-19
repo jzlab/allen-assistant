@@ -9,7 +9,7 @@ functools32==3.2.3.post2
 future==0.16.0
 h5py==2.7.0
 idna==2.5
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 matplotlib==2.0.2
 networkx==1.11
