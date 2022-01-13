@@ -17,7 +17,7 @@ numpy==1.13.0
 olefile==0.44
 packaging==16.8
 pandas==0.19.2
-Pillow==4.1.1
+Pillow==9.0.0
 pprint==0.1
 pynrrd==0.2.1
 pyparsing==2.2.0
