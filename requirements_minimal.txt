@@ -13,7 +13,7 @@ Jinja2==2.9.6
 MarkupSafe==1.0
 matplotlib==2.0.2
 networkx==1.11
-numpy==1.13.0
+numpy==1.22.0
 olefile==0.44
 packaging==16.8
 pandas==0.19.2
